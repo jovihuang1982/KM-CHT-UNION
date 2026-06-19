@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查詢</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+    // 初始化 vConsole
+    var vConsole = new window.VConsole();
+  </script>
+</head>
+<body>
+    <h3>請輸入員工資訊</h3>
+    <input type="text" id="employeeID" placeholder="員工代號">
+    <input type="text" id="employeeName" placeholder="姓名">
+    <select id="position">
+        <option value="工程師">進行中</option>
+        <option value="高級工程師">已完成</option>
+        <option value="管理師">進行中</option>
+        <option value="高級管理師">已完成</option>
+    </select>
+    <input type="date" id="onBoardingDate" placeholder="入職日期">
+    <button id="submitBtn">送出回報</button>
+
+    <script>        
+        const LIFF_ID = '2010284251-ujsQOtpr'; // 從 LINE Developers Console 取得
+
+        liff.init({ liffId: LIFF_ID }).then(() => {
+            console.log("LIFF 已初始化");
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', async () => {
+            // 1. 確保使用者已登入
+            if (!liff.isLoggedIn()) { liff.login(); }
+
+            // 2. 獲取使用者個人資料
+            const profile = await liff.getProfile();
+            
+            // 3. 準備資料並發送
+            const payload = {
+                userName: profile.displayName,
+                task: document.getElementById('taskName').value,
+                status: document.getElementById('status').value
+            };
+
+            liff.sendMessages([{
+                type: 'text',
+                text: '查詢電路編號:' + document.getElementById('taskName').value// 這會讓機器人收到 message 事件
+            }]).then(() => {
+                liff.closeWindow();
+            });
+        });
+    </script>
+</body>
+</html>
