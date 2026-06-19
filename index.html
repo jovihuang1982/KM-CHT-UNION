@@ -174,17 +174,17 @@
                 }
             });
 
-            console.log("response: " + response.status);
+            // console.log("response: " + response.status);
 
-            const result = await response.json();
+            // const result = await response.json();
 
             console.log("after response");
 
-            if (result.status === "success") {
+            if (response.status === "200") {
                 console.log("後端儲存成功！");
                 showSuccessAndClose();
             } else {
-                throw new Error(result.message);
+                throw new Error(response.message);
             }
         });
 
