@@ -7,25 +7,146 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
     <script>
-    // 初始化 vConsole
+    // 初始化 vConsole, for debug
     var vConsole = new window.VConsole();
   </script>
+  <style>
+    /* ── 原本的專業素雅 RWD 基礎樣式 ── */
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", "Noto Sans TC", sans-serif;
+      background-color: #f4f6f8; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      width: 90%;          
+      max-width: 480px;    
+      text-align: center;
+      transition: all 0.3s ease; /* 讓轉換畫面時平滑過渡 */
+    }
+    h2 {
+      color: #1f3a52; /* 深英倫藍 */     
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column; 
+      gap: 12px;
+    }
+    .input-box {
+      padding: 14px 16px;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      color: #333333;
+    }
+    .input-box:focus {
+      border-color: #1f3a52; 
+      box-shadow: 0 0 0 3px rgba(31, 58, 82, 0.1);
+    }
+    .submit-btn {
+      padding: 14px 20px;
+      background-color: #1f3a52; 
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    .submit-btn:hover {
+      background-color: #15293a; 
+    }
+
+    /* ── 專屬優雅風成功畫面樣式 ── */
+    .success-wrapper {
+      padding: 1.5rem 0;
+      animation: elegantFadeIn 0.6s ease forwards;
+    }
+    .success-icon-box {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.5rem auto;
+      border: 2px solid #d4af37; /* 古銅金細線條邊框 */
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .success-icon {
+      color: #d4af37; /* 古銅金勾勾 */
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    .success-title {
+      color: #1f3a52;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+    .success-text {
+      color: #778899; /* 雅致輕灰 */
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+    .countdown-num {
+      color: #1f3a52;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 2px;
+    }
+
+    /* 淡入動畫 */
+    @keyframes elegantFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RWD 平板與電腦螢幕適應 ── */
+    @media (min-width: 576px) {
+      .form-group { flex-direction: row; }
+      .input-box { flex: 1; }
+      .submit-btn { width: auto; min-width: 100px; }
+      .success-wrapper { padding: 2.5rem 0; } /* 寬螢幕加大留白營造精品感 */
+    }
+  </style>
 </head>
 <body>
-    <h3>請輸入員工資訊</h3>
-    <input type="text" id="employeeID" placeholder="員工代號">
-    <input type="text" id="employeeName" placeholder="姓名">
-    <select id="position">
+    <div class="container" id="mainContainer">
+    <h2>請輸入員工資訊</h2>
+    <div class="form-group">
+      <input type="text" id="employeeID" placeholder="員工代號">
+      <input type="text" id="employeeName" placeholder="姓名">
+      <select id="position">
         <option value="工程師">進行中</option>
         <option value="高級工程師">已完成</option>
         <option value="管理師">進行中</option>
         <option value="高級管理師">已完成</option>
-    </select>
-    <input type="date" id="onBoardingDate" placeholder="入職日期">
-    <button id="submitBtn">送出回報</button>
+      </select>
+      <input type="date" id="onBoardingDate" placeholder="入職日期">
+      <button id="submitBtn">送出回報</button>
+    </div>
+    </div>
 
-    <script>        
-        const LIFF_ID = '2010284251-ujsQOtpr'; // 從 LINE Developers Console 取得
+    <script>
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycby_f6DdxVE7iUFgn_G1hB-inHrmHDGhDLzRxoSiKObDg5kU4SEATryQ-fggaG1T1wiQ/exec";        
+        const LIFF_ID = '2010444532-KnMHqwPB'; // 從 LINE Developers Console 取得
 
         liff.init({ liffId: LIFF_ID }).then(() => {
             console.log("LIFF 已初始化");
@@ -37,21 +158,69 @@
 
             // 2. 獲取使用者個人資料
             const profile = await liff.getProfile();
-            
-            // 3. 準備資料並發送
+
+            // 3. 準備要打包送過去的資料
             const payload = {
-                userName: profile.displayName,
-                task: document.getElementById('taskName').value,
-                status: document.getElementById('status').value
+                userId: profile.userId,
+                userName: profile.displayName
             };
 
-            liff.sendMessages([{
-                type: 'text',
-                text: '查詢電路編號:' + document.getElementById('taskName').value// 這會讓機器人收到 message 事件
-            }]).then(() => {
-                liff.closeWindow();
+            const response = await fetch(GAS_WEB_APP_URL, {
+                method: "POST",
+                body: JSON.stringify(payload),
+                headers: {
+                // 注意：為了避免跨域(CORS)預檢請求失敗，在 GAS 實務中通常用 plain text 傳輸 JSON 字串
+                "Content-Type": "text/plain;charset=utf-8" 
+                }
             });
+
+            const result = await response.json();
+
+            if (result.status === "success") {
+                console.log("後端儲存成功！");
+                showSuccessAndClose();
+            } else {
+                throw new Error(result.message);
+            }
         });
+
+
+    function showSuccessAndClose() {
+      const container = document.getElementById('mainContainer');
+      
+      // 將卡片內部替換為古銅金細線風的成功語系
+      container.innerHTML = `
+        <div class="success-wrapper">
+          <div class="success-icon-box">
+            <span class="success-icon">✓</span>
+          </div>
+          <div class="success-title">會員權益綁定成功</div>
+          <div class="success-text">
+            安全連線已建立，視窗將於 
+            <span id="countdown" class="countdown-num">3</span> 
+            秒後自動關閉
+          </div>
+        </div>
+      `;
+
+      let seconds = 3;
+      const countdownEl = document.getElementById('countdown');
+
+      const timer = setInterval(() => {
+        seconds--;
+        if (countdownEl) countdownEl.textContent = seconds;
+
+        if (seconds <= 0) {
+          clearInterval(timer);
+          // 呼叫 LINE SDK 關閉網頁
+          if (typeof liff !== 'undefined' && liff.closeWindow) {
+            liff.closeWindow();
+          } else {
+            console.log("LIFF closeWindow 觸發 (非 LINE 環境)");
+          }
+        }
+      }, 1000);
+    }
     </script>
 </body>
 </html>
