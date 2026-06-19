@@ -174,7 +174,11 @@
                 }
             });
 
+            console.log("after fetch");
+
             const result = await response.json();
+
+            console.log("after response");
 
             if (result.status === "success") {
                 console.log("後端儲存成功！");
@@ -186,6 +190,7 @@
 
 
     function showSuccessAndClose() {
+      console.log("begin showSuccessAndClose");
       const container = document.getElementById('mainContainer');
       
       // 將卡片內部替換為古銅金細線風的成功語系
@@ -202,6 +207,8 @@
           </div>
         </div>
       `;
+
+      console.log("middle of showSuccessAndClose");
 
       let seconds = 3;
       const countdownEl = document.getElementById('countdown');
@@ -220,6 +227,8 @@
           }
         }
       }, 1000);
+
+      console.log("end of showSuccessAndClose");
     }
     </script>
 </body>
