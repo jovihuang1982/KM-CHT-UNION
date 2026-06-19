@@ -174,11 +174,9 @@
                 }
             });
 
-            // console.log("response: " + response.status);
+            const responseData = await response.json();
 
-            // const result = await response.json();
-
-            console.log("after response");
+            console.log("response data: " + responseData);
 
             if (response.status === 200) {
                 console.log("後端儲存成功！");
@@ -199,7 +197,7 @@
           <div class="success-icon-box">
             <span class="success-icon">✓</span>
           </div>
-          <div class="success-title">會員權益綁定成功</div>
+          <div class="success-title">會員資料綁定成功</div>
           <div class="success-text">
             安全連線已建立，視窗將於 
             <span id="countdown" class="countdown-num">3</span> 
@@ -207,8 +205,6 @@
           </div>
         </div>
       `;
-
-      console.log("middle of showSuccessAndClose");
 
       let seconds = 3;
       const countdownEl = document.getElementById('countdown');
@@ -227,8 +223,6 @@
           }
         }
       }, 1000);
-
-      console.log("end of showSuccessAndClose");
     }
     </script>
 </body>
