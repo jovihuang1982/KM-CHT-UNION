@@ -129,22 +129,50 @@
     input[type="date"].input-box:invalid {
         color: #999;
     }
+
+    /* Label 標籤樣式 */
+    .form-label {
+        display: block;
+        font-size: 0.85rem;
+        color: #1f3a52; /* 與標題同色系 */
+        margin-bottom: 5px;
+        font-weight: 500;
+        text-align: left;
+        margin-top: 10px; /* 與上方元素保持距離 */
+    }
+
+    /* 調整原本的 flexbox 結構，讓標籤能正確對應欄位 */
+    .field-container {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        width: 100%;
+    }
   </style>
 </head>
 <body>
     <div class="container" id="mainContainer">
     <h2>請輸入員工資訊</h2>
     <div class="form-group">
-      <input type="text" class="input-box" id="employeeID" placeholder="員工代號">
-      <input type="text" class="input-box" id="employeeName" placeholder="姓名">
-      <select class="input-box" id="position">
-        <option value="工程師">工程師</option>
-        <option value="高級工程師">高級工程師</option>
-        <option value="管理師">管理師</option>
-        <option value="高級管理師">高級管理師</option>
-      </select>
-      <input type="date" class="input-box" id="onBoardingDate" placeholder="入職日期">
-      <button class="submit-btn" id="submitBtn">送出回報</button>
+    <input type="text" class="input-box" id="employeeID" placeholder="請輸入員工代號">
+    <input type="text" class="input-box" id="employeeName" placeholder="請輸入姓名">
+  
+    <div class="field-container">
+        <label class="form-label">職階</label>
+        <select class="input-box" id="position">
+            <option value="工程師">工程師</option>
+            <option value="高級工程師">高級工程師</option>
+            <option value="管理師">管理師</option>
+            <option value="高級管理師">高級管理師</option>
+        </select>
+    </div>
+
+    <div class="field-container">
+        <label class="form-label">入職日</label>
+        <input type="date" class="input-box" id="onBoardingDate">
+    </div>
+
+    <button class="submit-btn" id="submitBtn" style="margin-top: 20px;">送出回報</button>
     </div>
     </div>
 
@@ -162,7 +190,7 @@
         const formattedToday = `${yyyy}-${mm}-${dd}`;
   
         // 設定到 input 中
-        document.getElementById('onBoardingDate').value = "入職日";
+        document.getElementById('onBoardingDate').value = formattedToday;
 
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycby_f6DdxVE7iUFgn_G1hB-inHrmHDGhDLzRxoSiKObDg5kU4SEATryQ-fggaG1T1wiQ/exec";        
         const LIFF_ID = '2010444532-KnMHqwPB'; // 從 LINE Developers Console 取得
