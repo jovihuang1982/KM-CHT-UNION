@@ -201,7 +201,7 @@
       .submit-btn { width: auto; min-width: 100px; }
       .success-wrapper { padding: 2.5rem 0; } /* 寬螢幕加大留白營造精品感 */
     }
-    
+
   </style>
 </head>
 <body>
@@ -264,6 +264,11 @@
             const payload = {
                 userId: profile.userId,
                 userName: profile.displayName
+                onBoardingdate: document.getElementById('onBoardingDate').value
+                employeeID: document.getElementById('employeeID').value
+                employeeName: document.getElementById('employeeName').value
+                position: document.getElementById('position').value
+                timestamp: new Date()
             };
 
             const response = await fetch(GAS_WEB_APP_URL, {
