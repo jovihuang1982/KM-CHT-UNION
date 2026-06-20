@@ -264,9 +264,9 @@
                 const payload = {
                     userId: profile.userId,
                     userName: profile.displayName,
-                    onBoardingdate: document.getElementById('onBoardingDate').value,
                     employeeID: document.getElementById('employeeID').value,
                     employeeName: document.getElementById('employeeName').value,
+                    onBoardingdate: document.getElementById('onBoardingDate').value,
                     position: document.getElementById('position').value,
                     timestamp: new Date()
                 };
@@ -281,8 +281,6 @@
                 });
 
                 const responseData = await response.text();
-
-                console.log("response data: " + responseData);
 
                 if (response.status === 200) {
                     console.log("後端儲存成功！");
