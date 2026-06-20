@@ -253,6 +253,10 @@
                 console.log("LIFF 已初始化");
             });
 
+            var onBoardingdate = document.getElementById('onBoardingDate').value;
+
+            console.log(onBoardingdate);
+
             document.getElementById('submitBtn').addEventListener('click', async () => {
                 // 1. 確保使用者已登入
                 if (!liff.isLoggedIn()) { liff.login(); }
@@ -264,7 +268,7 @@
                 const payload = {
                     userId: profile.userId,
                     userName: profile.displayName
-                    onBoardingdate: document.getElementById('onBoardingDate').value
+                    // onBoardingdate: document.getElementById('onBoardingDate').value
                     // employeeID: document.getElementById('employeeID').value
                     // employeeName: document.getElementById('employeeName').value
                     // position: document.getElementById('position').value
