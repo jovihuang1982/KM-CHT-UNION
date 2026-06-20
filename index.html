@@ -253,16 +253,14 @@
                 console.log("LIFF 已初始化");
             });
 
-            var onBoardingdate = document.getElementById('onBoardingDate').value;
-
-            console.log(onBoardingdate);
-
             document.getElementById('submitBtn').addEventListener('click', async () => {
                 // 1. 確保使用者已登入
                 if (!liff.isLoggedIn()) { liff.login(); }
 
                 // 2. 獲取使用者個人資料
                 const profile = await liff.getProfile();
+
+                const onboardingdate = document.getElementById('onBoardingDate').value;
 
                 // 3. 準備要打包送過去的資料
                 const payload = {
