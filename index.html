@@ -116,7 +116,19 @@
         select.input-box:disabled {
         background-color: #f9f9f9;
         cursor: not-allowed;
-        }
+    }
+    /* 日期輸入框樣式優化 */
+    input[type="date"].input-box {
+        padding: 14px 16px;
+        /* 確保在 Safari/Chrome 上字體一致 */
+        font-family: inherit;
+        color: #333333;
+    }
+
+    /* 讓日期輸入框在未選擇時顯示灰色提示字色，選擇後顯示深色 */
+    input[type="date"].input-box:invalid {
+        color: #999;
+    }
   </style>
 </head>
 <body>
@@ -126,12 +138,12 @@
       <input type="text" class="input-box" id="employeeID" placeholder="員工代號">
       <input type="text" class="input-box" id="employeeName" placeholder="姓名">
       <select class="input-box" id="position">
-        <option value="工程師">進行中</option>
-        <option value="高級工程師">已完成</option>
-        <option value="管理師">進行中</option>
-        <option value="高級管理師">已完成</option>
+        <option value="工程師">工程師</option>
+        <option value="高級工程師">高級工程師</option>
+        <option value="管理師">管理師</option>
+        <option value="高級管理師">高級管理師</option>
       </select>
-      <input type="date" id="onBoardingDate" placeholder="入職日期">
+      <input type="date" class="input-box" id="onBoardingDate" placeholder="入職日期">
       <button class="submit-btn" id="submitBtn">送出回報</button>
     </div>
     </div>
