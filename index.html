@@ -10,41 +10,47 @@
     // 初始化 vConsole, for debug
     var vConsole = new window.VConsole();
   </script>
-  <style>
-    /* ── 原本的專業素雅 RWD 基礎樣式 ── */
+ <style>
+    /* 全域樣式重設，營造專業素雅氛圍 */
     body {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", "Noto Sans TC", sans-serif;
-      background-color: #f4f6f8; 
+      background-color: #f4f6f8; /* 霧面灰白底色 */
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
+
+    /* 外層卡片容器 */
     .container {
       background-color: #ffffff;
       padding: 2.5rem;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      width: 90%;          
-      max-width: 480px;    
+      width: 90%;          /* 行動裝置上預留左右邊距 */
+      max-width: 480px;    /* 電腦版限制最大寬度，避免過寬 */
       text-align: center;
-      transition: all 0.3s ease; /* 讓轉換畫面時平滑過渡 */
     }
+
     h2 {
-      color: #1f3a52; /* 深英倫藍 */     
+      color: #1f3a52;      /* 深英倫藍 */
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
+
+    /* 表單佈局 */
     .form-group {
       display: flex;
-      flex-direction: column; 
+      flex-direction: column; /* 預設在手機上垂直排列 */
       gap: 12px;
     }
+
+    /* 輸入框樣式 */
     .input-box {
       padding: 14px 16px;
       border: 1px solid #dcdcdc;
@@ -54,13 +60,16 @@
       transition: border-color 0.3s ease;
       color: #333333;
     }
+
     .input-box:focus {
-      border-color: #1f3a52; 
+      border-color: #1f3a52; /* 聚焦時變深藍 */
       box-shadow: 0 0 0 3px rgba(31, 58, 82, 0.1);
     }
+
+    /* 按鈕樣式 */
     .submit-btn {
       padding: 14px 20px;
-      background-color: #1f3a52; 
+      background-color: #1f3a52; /* 專業深藍 */
       color: #ffffff;
       border: none;
       border-radius: 6px;
@@ -69,61 +78,29 @@
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.1s ease;
     }
+
     .submit-btn:hover {
-      background-color: #15293a; 
+      background-color: #15293a; /* 滑過時加深 */
     }
 
-    /* ── 專屬優雅風成功畫面樣式 ── */
-    .success-wrapper {
-      padding: 1.5rem 0;
-      animation: elegantFadeIn 0.6s ease forwards;
-    }
-    .success-icon-box {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 1.5rem auto;
-      border: 2px solid #d4af37; /* 古銅金細線條邊框 */
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .success-icon {
-      color: #d4af37; /* 古銅金勾勾 */
-      font-size: 2rem;
-      font-weight: 300;
-    }
-    .success-title {
-      color: #1f3a52;
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 0.75rem;
-    }
-    .success-text {
-      color: #778899; /* 雅致輕灰 */
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-    }
-    .countdown-num {
-      color: #1f3a52;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin: 0 2px;
+    .submit-btn:active {
+      transform: scale(0.98); /* 點擊時的下壓反饋 */
     }
 
-    /* 淡入動畫 */
-    @keyframes elegantFadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RWD 平板與電腦螢幕適應 ── */
+    /* ── RWD 響應式優化 (針對平板與電腦螢幕) ── */
     @media (min-width: 576px) {
-      .form-group { flex-direction: row; }
-      .input-box { flex: 1; }
-      .submit-btn { width: auto; min-width: 100px; }
-      .success-wrapper { padding: 2.5rem 0; } /* 寬螢幕加大留白營造精品感 */
+      .form-group {
+        flex-direction: row; /* 在寬螢幕上橫向並排，更流暢 */
+      }
+      
+      .input-box {
+        flex: 1; /* 讓輸入框自動填滿剩餘空間 */
+      }
+
+      .submit-btn {
+        width: auto; /* 按鈕寬度由文字決定 */
+        min-width: 100px;
+      }
     }
   </style>
 </head>
