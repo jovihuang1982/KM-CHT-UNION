@@ -149,6 +149,21 @@
     </div>
 
     <script>
+        // 取得今天的日期
+        const today = new Date();
+  
+        // 格式化為 YYYY-MM-DD
+        // getMonth() 回傳的是 0-11，所以要 +1
+        // padStart(2, '0') 確保 6 月會變成 06
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+  
+        const formattedToday = `${yyyy}-${mm}-${dd}`;
+  
+        // 設定到 input 中
+        document.getElementById('onBoardingDate').value = formattedToday;
+
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycby_f6DdxVE7iUFgn_G1hB-inHrmHDGhDLzRxoSiKObDg5kU4SEATryQ-fggaG1T1wiQ/exec";        
         const LIFF_ID = '2010444532-KnMHqwPB'; // 從 LINE Developers Console 取得
 
